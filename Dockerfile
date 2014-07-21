@@ -2,7 +2,7 @@ FROM ubuntu:14.04
 MAINTAINER Dirk Franssen "dirk.franssen@gmail.com"
 
 RUN apt-get update && apt-get clean
-RUN apt-get -y install wget && apt-get clean
+RUN apt-get -y install wget rpm && apt-get clean
 
 # Installs JDK 8
 RUN wget --no-cookies --no-check-certificate --header "Cookie: oraclelicense=accept-securebackup-cookie" \
