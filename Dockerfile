@@ -7,4 +7,6 @@ RUN apt-get -y install wget alien dpkg-dev debhelper build-essential && apt-get 
 # Installs JDK 8
 RUN wget --no-cookies --no-check-certificate --header "Cookie: oraclelicense=accept-securebackup-cookie" \
          "http://download.oracle.com/otn-pub/java/jdk/8u11-b12/jre-8u11-linux-x64.rpm" -O /opt/jre-8u11-linux-x64.rpm
-RUN rpm -Uvh /opt/jre-8u11-linux-x64.rpm && rm /opt/jre-8u11-linux-x64.rpm
+RUN cd /opt/ && alien -k --scripts jre-8u11-linux-x64.rpm
+RUN cd /opt/ && dpkg -i jre-8u11-linux-x64.deb
+RUN rm /opt/jre-8u11-linux-x64.*
