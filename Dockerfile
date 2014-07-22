@@ -20,8 +20,8 @@ ENV JAVA_HOME $JVM_ROOT_PATH/$JAVA_ALIAS
 
 # But doing it the alternative way :-)
 # STEP 1 - get the dependencies to configure this
-ADD https://github.com/dfranssen/docker-base/blob/master/scripts/.$JAVA_ALIAS.jinfo $JVM_ROOT_PATH/.$JAVA_ALIAS.jinfo
-ADD https://github.com/dfranssen/docker-base/blob/master/scripts/update-alternative-$JAVA_ALIAS.sh $JVM_ROOT_PATH/update-alternative-$JAVA_ALIAS.sh
+ADD https://raw.githubusercontent.com/dfranssen/docker-base/master/scripts/.$JAVA_ALIAS.jinfo $JVM_ROOT_PATH/.$JAVA_ALIAS.jinfo
+ADD https://raw.githubusercontent.com/dfranssen/docker-base/master/scripts/update-alternative-$JAVA_ALIAS.sh $JVM_ROOT_PATH/update-alternative-$JAVA_ALIAS.sh
 # STEP 2 - update and set alternatives via script (and remove script afterxwards)
 RUN chown -R root:root $JVM_ROOT_PATH && \
     chmod 655 $JVM_ROOT_PATH/update-alternative-$JAVA_ALIAS.sh && \
