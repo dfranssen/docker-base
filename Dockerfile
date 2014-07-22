@@ -1,7 +1,15 @@
 FROM ubuntu:trusty
 MAINTAINER Dirk Franssen "dirk.franssen@gmail.com"
 
+# One could force a daily or weekly upgrade of all
+# packages by changing the REFRESHED_AT date, from time to time.
+# Otherwise the first lines would be cached by docker and
+# one would always use non up-to-date versions of the OS
+
+ENV REFRESHED_AT 2014-07-21
+
 RUN apt-get update
+RUN apt-get upgrade -y
 RUN apt-get -y install wget man java-common
 
 # Installs JDK 8 (8u11-b12 to be exact :-))
@@ -19,10 +27,10 @@ ENV JAVA_HOME $JVM_ROOT_PATH/$JAVA_ALIAS
 # ENV PATH $JAVA_HOME/bin:$PATH
 
 # But doing it the alternative way :-)
-# STEP 1 - get the dependencies to configure this
+# STEP 1 - get the dependencies to configure this java version
 ADD https://raw.githubusercontent.com/dfranssen/docker-base/master/scripts/.$JAVA_ALIAS.jinfo $JVM_ROOT_PATH/.$JAVA_ALIAS.jinfo
 ADD https://raw.githubusercontent.com/dfranssen/docker-base/master/scripts/update-alternative-$JAVA_ALIAS.sh $JVM_ROOT_PATH/update-alternative-$JAVA_ALIAS.sh
-# STEP 2 - update and set alternatives via script (and remove script afterxwards)
+# STEP 2 - update and set alternatives via script (and remove script afterwards)
 RUN chown -R root:root $JVM_ROOT_PATH && \
     chmod 655 $JVM_ROOT_PATH/update-alternative-$JAVA_ALIAS.sh && \
     .$JVM_ROOT_PATH/update-alternative-$JAVA_ALIAS.sh && \
