@@ -31,7 +31,7 @@ update-alternatives --install /usr/bin/wsgen wsgen $JAVA_HOME/bin/wsgen 100 --sl
 update-alternatives --install /usr/bin/wsimport wsimport $JAVA_HOME/bin/wsimport 100 --slave /usr/share/man/man1/wsimport.1 wsimport.1 $JAVA_HOME/man/man1/wsimport.1
 update-alternatives --install /usr/bin/xjc xjc $JAVA_HOME/bin/xjc 100 --slave /usr/share/man/man1/xjc.1 xjc.1 $JAVA_HOME/man/man1/xjc.1
 
-update-alternatives --install /usr/bin/ControlPanel java $JAVA_HOME/jre/bin/ControlPanel 100
+update-alternatives --install /usr/bin/ControlPanel ControlPanel $JAVA_HOME/jre/bin/ControlPanel 100
 update-alternatives --install /usr/bin/java java $JAVA_HOME/jre/bin/java 100 --slave /usr/share/man/man1/java.1 java.1 $JAVA_HOME/man/man1/java.1
 update-alternatives --install /usr/bin/javaws javaws $JAVA_HOME/jre/bin/javaws 100 --slave /usr/share/man/man1/javaws.1 javaws.1 $JAVA_HOME/man/man1/javaws.1
 update-alternatives --install /usr/bin/jcontrol jcontrol $JAVA_HOME/jre/bin/jcontrol 100
@@ -45,5 +45,8 @@ update-alternatives --install /usr/bin/rmiregistry rmiregistry $JAVA_HOME/jre/bi
 update-alternatives --install /usr/bin/servertool servertool $JAVA_HOME/jre/bin/servertool 100 --slave /usr/share/man/man1/servertool.1 servertool.1 $JAVA_HOME/man/man1/servertool.1
 update-alternatives --install /usr/bin/tnameserv tnameserv $JAVA_HOME/jre/bin/tnameserv 100 --slave /usr/share/man/man1/tnameserv.1 tnameserv.1 $JAVA_HOME/man/man1/tnameserv.1
 update-alternatives --install /usr/bin/unpack200 unpack200 $JAVA_HOME/jre/bin/unpack200 100 --slave /usr/share/man/man1/unpack200.1 unpack200.1 $JAVA_HOME/man/man1/unpack200.1
+
+update-alternatives --install /usr/lib/xulrunner-addons/plugins/libjavaplugin.so xulrunner-1.9-javaplugin.so $JAVA_HOME/jre/lib/amd64/libnpjp2.so 100
+update-alternatives --install /usr/lib/mozilla/plugins/libjavaplugin.so mozilla-javaplugin.so $JAVA_HOME/jre/lib/amd64/libnpjp2.so 100
 
 update-java-alternatives -s $JAVA_ALIAS
