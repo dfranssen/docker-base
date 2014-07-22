@@ -46,7 +46,8 @@ update-alternatives --install /usr/bin/servertool servertool $JAVA_HOME/jre/bin/
 update-alternatives --install /usr/bin/tnameserv tnameserv $JAVA_HOME/jre/bin/tnameserv 100 --slave /usr/share/man/man1/tnameserv.1 tnameserv.1 $JAVA_HOME/man/man1/tnameserv.1
 update-alternatives --install /usr/bin/unpack200 unpack200 $JAVA_HOME/jre/bin/unpack200 100 --slave /usr/share/man/man1/unpack200.1 unpack200.1 $JAVA_HOME/man/man1/unpack200.1
 
-update-alternatives --install /usr/lib/xulrunner-addons/plugins/libjavaplugin.so xulrunner-1.9-javaplugin.so $JAVA_HOME/jre/lib/amd64/libnpjp2.so 100
-update-alternatives --install /usr/lib/mozilla/plugins/libjavaplugin.so mozilla-javaplugin.so $JAVA_HOME/jre/lib/amd64/libnpjp2.so 100
+#thos plugins are currently not available/needed in docker base image
+#update-alternatives --install /usr/lib/xulrunner-addons/plugins/libjavaplugin.so xulrunner-1.9-javaplugin.so $JAVA_HOME/jre/lib/amd64/libnpjp2.so 100
+#update-alternatives --install /usr/lib/mozilla/plugins/libjavaplugin.so mozilla-javaplugin.so $JAVA_HOME/jre/lib/amd64/libnpjp2.so 100
 
 update-java-alternatives -s $JAVA_ALIAS
