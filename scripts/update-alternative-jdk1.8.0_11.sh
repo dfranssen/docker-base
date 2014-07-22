@@ -29,7 +29,7 @@ update-alternatives --install /usr/bin/schemagen schemagen $JAVA_HOME/bin/schema
 update-alternatives --install /usr/bin/serialver serialver $JAVA_HOME/bin/serialver --slave /usr/share/man/man1/serialver.1 serialver.1 $JAVA_HOME/man/man1/serialver.1
 update-alternatives --install /usr/bin/wsgen wsgen $JAVA_HOME/bin/wsgen --slave /usr/share/man/man1/wsgen.1 wsgen.1 $JAVA_HOME/man/man1/wsgen.1
 update-alternatives --install /usr/bin/wsimport wsimport $JAVA_HOME/bin/wsimport --slave /usr/share/man/man1/wsimport.1 wsimport.1 $JAVA_HOME/man/man1/wsimport.1
-update-alternatives --install /usr/bin/xjc xjc $JAVA_HOME/bin/xjc 100 --slave /usr/share/man/man1/xjc.1 xjc.1 $JAVA_HOME/man/man1/xjc.1 \
+update-alternatives --install /usr/bin/xjc xjc $JAVA_HOME/bin/xjc 100 --slave /usr/share/man/man1/xjc.1 xjc.1 $JAVA_HOME/man/man1/xjc.1
 
 update-alternatives --install /usr/bin/ControlPanel java $JAVA_HOME/jre/bin/ControlPanel 100
 update-alternatives --install /usr/bin/java java $JAVA_HOME/jre/bin/java 100 --slave /usr/share/man/man1/java.1 java.1 $JAVA_HOME/man/man1/java.1
