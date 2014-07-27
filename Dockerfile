@@ -6,32 +6,26 @@ MAINTAINER Dirk Franssen "dirk.franssen@gmail.com"
 # Otherwise the first lines would be cached by docker and
 # one would always use non up-to-date versions of the OS
 
-ENV REFRESHED_AT 2014-07-21
+ENV REFRESHED_AT 2014-07-23
 
-RUN apt-get update
-RUN apt-get upgrade -y
-RUN apt-get -y install wget man java-common
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    apt-get -y install wget man java-common && \
+    apt-get clean
 
-# Installs JDK 8 (8u11-b12 to be exact :-))
+ENV JVM_ROOT_PATH /usr/lib/jvm
+RUN if [ ! -d $JVM_ROOT_PATH ]; then mkdir $JVM_ROOT_PATH; fi
+
 # I personally prefer not to depend on a ppa package to install 'a version' of jdk1.8
+# This will install JDK1.8 (8u11-b12 to be exact :-))
 RUN wget --header "Cookie: oraclelicense=accept-securebackup-cookie" \
     http://download.oracle.com/otn-pub/java/jdk/8u11-b12/jdk-8u11-linux-x64.tar.gz -O /tmp/jdk-8u11-linux-x64.tar.gz
-RUN if [ ! -d '/usr/lib/jvm' ]; then mkdir /usr/lib/jvm; fi
-RUN tar -zxf /tmp/jdk-8u11-linux-x64.tar.gz -C /usr/lib/jvm && rm /tmp/jdk-8u11-linux-x64.tar.gz
+RUN tar -zxf /tmp/jdk-8u11-linux-x64.tar.gz -C $JVM_ROOT_PATH && \
+    chown -R root:root $JVM_ROOT_PATH && \
+    rm /tmp/jdk-8u11-linux-x64.tar.gz
 
-ENV JAVA_ALIAS jdk1.8.0_11
-ENV JVM_ROOT_PATH /usr/lib/jvm
-ENV JAVA_HOME $JVM_ROOT_PATH/$JAVA_ALIAS
+ENV JAVA_HOME $JVM_ROOT_PATH/jdk1.8.0_11
+ENV PATH $JAVA_HOME/bin:$PATH
 
-# In most of the cases having the $JAVA_HOME/bin in the PATH would have been sufficient though
-# ENV PATH $JAVA_HOME/bin:$PATH
-
-# But doing it the alternative way :-)
-# STEP 1 - get the dependencies to configure this java version
-ADD https://raw.githubusercontent.com/dfranssen/docker-base/master/scripts/.$JAVA_ALIAS.jinfo $JVM_ROOT_PATH/.$JAVA_ALIAS.jinfo
-ADD https://raw.githubusercontent.com/dfranssen/docker-base/master/scripts/update-alternative-$JAVA_ALIAS.sh $JVM_ROOT_PATH/update-alternative-$JAVA_ALIAS.sh
-# STEP 2 - update and set alternatives via script (and remove script afterwards)
-RUN chown -R root:root $JVM_ROOT_PATH && \
-    chmod 655 $JVM_ROOT_PATH/update-alternative-$JAVA_ALIAS.sh && \
-    .$JVM_ROOT_PATH/update-alternative-$JAVA_ALIAS.sh && \
-    rm $JVM_ROOT_PATH/update-alternative-$JAVA_ALIAS.sh
+#Note: Here it is just set in the PATH env, because this image is 170MB less than the update-alternatives one.
+#See https://github.com/dfranssen/docker-files/tree/master/docker-base-ubuntu/java8-update-alternatives
