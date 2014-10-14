@@ -20,6 +20,7 @@ RUN mkdir -p $JVM_ROOT_PATH
 # This will install JDK1.8 (8u20-b26 to be exact :-))
 RUN wget --header "Cookie: oraclelicense=accept-securebackup-cookie" \
     http://download.oracle.com/otn-pub/java/jdk/8u20-b26/jdk-8u20-linux-x64.tar.gz -O /tmp/jdk-8u20-linux-x64.tar.gz && \
+    echo "ec7f89dc3697b402e2c851d0488f6299  /tmp/jdk-8u20-linux-x64.tar.gz" | md5sum -c && \
     tar -zxf /tmp/jdk-8u20-linux-x64.tar.gz -C $JVM_ROOT_PATH && \
     chown -R root:root $JVM_ROOT_PATH && \
     rm /tmp/jdk-8u20-linux-x64.tar.gz
