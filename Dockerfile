@@ -6,11 +6,11 @@ MAINTAINER Dirk Franssen "dirk.franssen@gmail.com"
 # Otherwise the first lines would be cached by docker and
 # one would always use non up-to-date versions of the OS
 
-ENV REFRESHED_AT 2014-10-09
+ENV REFRESHED_AT 2014-10-14
 
 RUN sed 's/main$/main universe/' -i /etc/apt/sources.list && \
         apt-get update && \
-        apt-get -y install man wget && \
+        apt-get -y install man wget curl && \
         apt-get clean
 
 ENV JVM_ROOT_PATH /usr/lib/jvm
